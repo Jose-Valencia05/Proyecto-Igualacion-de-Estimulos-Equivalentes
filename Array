@@ -1,0 +1,11 @@
+class Array {
+
+    private ArrayList l_Usuarios;
+    private int id = -1;
+
+    public Array{
+
+    }
+
+    
+}

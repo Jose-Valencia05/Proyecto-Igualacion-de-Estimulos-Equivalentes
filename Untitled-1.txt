@@ -1,0 +1,71 @@
+	
+	private JTextField edad;
+	private JTextField sems;
+
+    public JPanel tabla;
+
+    public void P_Tabla(){
+
+        tabla = new JPanel();
+
+        tabla.setBounds(300, 300, 600, 200);
+        
+        String[] columns = new String[] {
+            "Edad", "Semestre", "Carrera", "Sexo"
+        };
+
+        edad = new JTextField();
+
+        edad.setFont(new Font("Arial", Font.PLAIN, 20));
+		edad.addKeyListener(val_edad);
+
+        sems = new JTextField();
+
+        sems.setFont(new Font("Arial", Font.PLAIN, 20));
+        sems.addKeyListener(val_sems);
+
+        String[] s_carr = new String[] { 
+
+            "PSICOLOGIA", 
+            "OPTOMETRIA", 
+            "BIOLOGIA", 
+
+
+
+
+
+            
+            "MEDICO CIRUJANO", 
+            "CIRUJANO DENTISTA",
+            "ENFERMERIA" 
+
+        };
+        
+        JComboBox<String> carr = new JComboBox<String>(s_carr);
+
+        //Tiene que estar en el mismo panel
+
+        Object[][] data = new Object[][]{
+
+            {null, null, null, null},
+            {null, null, null, null}
+
+        };
+
+        JTable d_table = new JTable(data, columns);
+
+        d_table.setRowHeight(40);
+
+        d_table.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(edad));
+        d_table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(sems));
+        d_table.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(carr));
+        d_table.getColumnModel().getColumn(2).setPreferredWidth(150);
+        //d_table.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(sex));
+
+        JScrollPane sp = new JScrollPane(d_table);
+
+        tabla.add(sp);
+
+        fondo.add(tabla);
+
+    }
