@@ -26,8 +26,17 @@ public class VentanaPrincipal extends JFrame {
             case ConstantesPantallas.PANTALLA_MENU:
                 add(new PantallaMenu());
                 break;
-            case ConstantesPantallas.PANTALLA_DATOS:
-                add(new PantallaDatos());
+            case ConstantesPantallas.PANTALLA_REGISTRO:
+                add(new PantallaRegistro());
+                break;
+            case ConstantesPantallas.PANTALLA_REPORTE:
+                add(new PantallaRegistro());
+                break;
+            case ConstantesPantallas.PANTALLA_TESTMENU:
+                add(new PantallaRegistro());
+                break;
+            case ConstantesPantallas.PANTALLA_TEST:
+                add(new PantallaRegistro());
                 break;
         }
 

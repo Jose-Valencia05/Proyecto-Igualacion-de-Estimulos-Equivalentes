@@ -17,14 +17,14 @@ public class Labels extends JLabel {
         this.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
-    public void setTitulo() {
+    public void madeTitulo() {
         this.setFont(new Font("Arial", Font.ITALIC + Font.BOLD, 50));
         this.setForeground(Color.WHITE);
         this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
-    public void setSubtitle() {
+    public void madeSubtitle() {
         this.setFont(new Font("Arial", Font.BOLD, 25));
         this.setForeground(Color.LIGHT_GRAY);
         this.setHorizontalAlignment(SwingConstants.CENTER);

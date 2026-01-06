@@ -22,10 +22,6 @@ public abstract class PanelPrincipal extends JPanel {
 
         iniciarPaneles();
 
-        inicializarPanelTitulo();
-        inicializarPanelContenido();
-        inicializarPanelBotones();
-
         this.add(pnl_Titulo, BorderLayout.NORTH);
         this.add(pnl_Contenido, BorderLayout.CENTER);
         this.add(pnl_Botones, BorderLayout.SOUTH);
@@ -44,10 +40,14 @@ public abstract class PanelPrincipal extends JPanel {
         pnl_Contenido.setBackground(Color.white);
 
         pnl_Botones = new JPanel();
-        pnl_Botones.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        pnl_Botones.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 20));
         pnl_Botones.setPreferredSize(
                 new Dimension(ConstantesPantallas.ANCHO_VENTANA, ConstantesPantallas.ALTURA_PANEL_TITULO));
         pnl_Botones.setBackground(Color.DARK_GRAY);
+
+        inicializarPanelTitulo();
+        inicializarPanelContenido();
+        inicializarPanelBotones();
 
     }
 
@@ -57,9 +57,8 @@ public abstract class PanelPrincipal extends JPanel {
 
     protected abstract void inicializarPanelBotones();
 
-    protected void agregarBotonRegresar(int intVentanaDestino) {
-        BotonRegresar btn = new BotonRegresar(intVentanaDestino);
-        pnl_Botones.add(btn);
+    protected void agregarBotonRegresar(int intPantallaAnterior) {
+        pnl_Botones.add(new Buttons("Regresar", intPantallaAnterior));
     }
 
 }
