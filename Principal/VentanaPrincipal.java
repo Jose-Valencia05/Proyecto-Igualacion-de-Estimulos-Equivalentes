@@ -30,7 +30,7 @@ public class VentanaPrincipal extends JFrame {
                 add(new PantallaRegistro());
                 break;
             case ConstantesPantallas.PANTALLA_REPORTE:
-                add(new PantallaRegistro());
+                add(new PantallaReporte());
                 break;
             case ConstantesPantallas.PANTALLA_TESTMENU:
                 add(new PantallaRegistro());

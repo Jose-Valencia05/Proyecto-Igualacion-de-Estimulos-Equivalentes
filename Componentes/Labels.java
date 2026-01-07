@@ -14,7 +14,7 @@ public class Labels extends JLabel {
         this.setFont(new Font("Arial", Font.PLAIN, 18));
         this.setForeground(Color.BLACK);
         this.setHorizontalAlignment(SwingConstants.LEFT);
-        this.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.setAlignmentX(Component.LEFT_ALIGNMENT);
     }
 
     public void madeTitulo() {

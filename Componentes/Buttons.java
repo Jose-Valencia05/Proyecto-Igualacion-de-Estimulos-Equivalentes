@@ -16,7 +16,6 @@ public class Buttons extends JButton {
         this.setOpaque(true);
         this.setBackground(Color.BLUE);
         this.setPreferredSize(new Dimension((super.getPreferredSize().width + 30), 50));
-        // this.setMargin(new Insets(10, 20, 10, 20));
 
         this.addActionListener(e -> {
             Window w = SwingUtilities.getWindowAncestor(this);
