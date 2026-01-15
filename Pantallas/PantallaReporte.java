@@ -31,7 +31,7 @@ public class PantallaReporte extends PanelPrincipal {
     protected void inicializarPanelContenido() {
 
         String[] strColumnas = {
-                "ID", "Nombre", "Carrera", "Semestre", "Edad", "Sexo",
+                "ID", "Nombre", "Apellidos", "Carrera", "Semestre", "Edad", "Sexo",
                 "F1: Errores", "F1: Aciertos", "F1: Tiempo",
                 "F2: Errores", "F2: Aciertos", "F2: Tiempo",
                 "F3: Errores", "F3: Aciertos", "F3: Tiempo"
@@ -42,6 +42,8 @@ public class PantallaReporte extends PanelPrincipal {
         JTable jtbTabla = new JTable(dtmTabla);
         jtbTabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jtbTabla.setRowHeight(30);
+
+        jtbTabla.setEnabled(false);
 
         jtbTabla.getColumnModel().getColumn(1).setPreferredWidth(250);
         jtbTabla.getColumnModel().getColumn(2).setPreferredWidth(150);

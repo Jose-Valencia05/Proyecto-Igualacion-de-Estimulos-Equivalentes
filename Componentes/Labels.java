@@ -2,7 +2,6 @@ package Componentes;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -11,21 +10,24 @@ public class Labels extends JLabel {
 
     public Labels(String strTitulo) {
         super(strTitulo);
-        this.setFont(new Font("Arial", Font.PLAIN, 18));
+        this.setFont(Fuentes.FUENTE_TEXTO);
         this.setForeground(Color.BLACK);
         this.setHorizontalAlignment(SwingConstants.LEFT);
         this.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        // Eliminar al Subir a main
+        this.setOpaque(true);
     }
 
     public void madeTitulo() {
-        this.setFont(new Font("Arial", Font.ITALIC + Font.BOLD, 50));
+        this.setFont(Fuentes.FUENTE_TITULO);
         this.setForeground(Color.WHITE);
         this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
     public void madeSubtitle() {
-        this.setFont(new Font("Arial", Font.BOLD, 25));
+        this.setFont(Fuentes.FUENTE_SUBTITULO);
         this.setForeground(Color.LIGHT_GRAY);
         this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setAlignmentX(Component.CENTER_ALIGNMENT);
