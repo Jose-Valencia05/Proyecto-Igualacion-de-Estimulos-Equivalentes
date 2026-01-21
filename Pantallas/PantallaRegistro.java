@@ -1,8 +1,14 @@
 package Pantallas;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import Componentes.Buttons;
 import Componentes.ConstantesPantallas;
@@ -11,6 +17,34 @@ import Componentes.PanelPrincipal;
 import Componentes.Texts;
 
 public class PantallaRegistro extends PanelPrincipal {
+
+    private enum LargoComponente {
+        PEQUEÑO(80), // Ancho en píxeles
+        MEDIANO(200),
+        GRANDE(400),
+        FIJO(0); // Para etiquetas
+
+        private final int ancho;
+
+        LargoComponente(int ancho) {
+            this.ancho = ancho;
+        }
+
+        public int getAncho() {
+            return ancho;
+        }
+    }
+
+    public PantallaRegistro() {
+        this.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent evt) {
+                pnl_Contenido.revalidate();
+                pnl_Contenido.repaint();
+            }
+        });
+
+    }
+
     @Override
     protected void inicializarPanelTitulo() {
         Labels lblTitulo = new Labels("Agregar Registro");
@@ -27,24 +61,38 @@ public class PantallaRegistro extends PanelPrincipal {
     @Override
     protected void inicializarPanelContenido() {
 
-        pnl_Contenido.setLayout(new GridLayout(0, 6, 20, 50));
+        // Modificamos el Layout
+        pnl_Contenido.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 25));
 
-        pnl_Contenido.add(new Labels("Nombre:"));
-        pnl_Contenido.add(new Texts("Juan Antonio", "Nombre del paciente"));
-        pnl_Contenido.add(new Labels("Apellidos:"));
-        pnl_Contenido.add(new Texts("Perez Sanchez", "Apellidos del paciente"));
-        pnl_Contenido.add(new Labels("Edad:"));
-        pnl_Contenido.add(new Texts("Edad", "Edad del paciente"));
-        pnl_Contenido.add(new Labels("Carrera:"));
-        pnl_Contenido.add(new JComboBox<String>(new String[] {
+        // Escalable: Poder añadir mas componentes o retirarlos
+
+        agregarComponente("Nombre:", new Texts("Juan Antonio", "Nombre del Paciente"), LargoComponente.GRANDE);
+        agregarComponente("Apellidos:", new Texts("Perez Sanchez", "Apellidos del Paciente"), LargoComponente.GRANDE);
+        agregarComponente("Edad:", new Texts(null, "Edad del Paciente"), LargoComponente.PEQUEÑO);
+        agregarComponente("Carrera:", new JComboBox<String>(new String[] {
                 "PSICOLOGIA",
                 "OPTOMETRIA",
                 "BIOLOGIA",
                 "MEDICO CIRUJANO",
                 "CIRUJANO DENTISTA",
                 "ENFERMERIA"
-        }));
-        pnl_Contenido.add(new Labels("Semestre:"));
+        }), LargoComponente.MEDIANO);
+
+        agregarComponente("Semestre:", new Texts(null, "Semestre del Paciente"), LargoComponente.PEQUEÑO);
+
+    }
+
+    private void agregarComponente(String strLabel, JComponent jcp_Componente, LargoComponente dblLargo) {
+
+        JPanel pnl_Grupo = new JPanel(new BorderLayout(5, 2));
+
+        pnl_Grupo.add(new Labels(strLabel), BorderLayout.NORTH);
+
+        jcp_Componente.setPreferredSize(new Dimension(dblLargo.getAncho(), 35));
+        pnl_Grupo.add(jcp_Componente, BorderLayout.CENTER);
+
+        pnl_Contenido.add(pnl_Grupo);
+        // new Texts(strTextText, (strTextTool == null ? "" : strTextTool)), gbc);
 
     }
 

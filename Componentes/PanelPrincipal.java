@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public abstract class PanelPrincipal extends JPanel {
 
@@ -23,7 +24,13 @@ public abstract class PanelPrincipal extends JPanel {
         iniciarPaneles();
 
         this.add(pnl_Titulo, BorderLayout.NORTH);
-        this.add(pnl_Contenido, BorderLayout.CENTER);
+
+        JScrollPane jsp_Contenido = new JScrollPane(pnl_Contenido);
+        jsp_Contenido.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        jsp_Contenido.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jsp_Contenido.setBorder(null);
+
+        this.add(jsp_Contenido, BorderLayout.CENTER);
         this.add(pnl_Botones, BorderLayout.SOUTH);
     }
 
@@ -35,7 +42,12 @@ public abstract class PanelPrincipal extends JPanel {
                 new Dimension(ConstantesPantallas.ANCHO_VENTANA, ConstantesPantallas.ALTURA_PANEL_TITULO));
         pnl_Titulo.setBackground(Color.DARK_GRAY);
 
-        pnl_Contenido = new JPanel();
+        pnl_Contenido = new JPanel() {
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(getParent().getWidth(), super.getPreferredSize().height);
+            }
+        };
         pnl_Contenido.setLayout(new GridBagLayout());
         pnl_Contenido.setBackground(Color.white);
 

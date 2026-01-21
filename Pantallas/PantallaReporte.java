@@ -54,11 +54,11 @@ public class PantallaReporte extends PanelPrincipal {
 
         jtbTabla.setTableHeader(jth);
 
-        JScrollPane scp_Tabla = new JScrollPane(jtbTabla);
-        scp_Tabla.setBorder(null);
+        JScrollPane jsp_Tabla = new JScrollPane(jtbTabla);
+        jsp_Tabla.setBorder(null);
 
         pnl_Contenido.setLayout(new BorderLayout());
-        pnl_Contenido.add(scp_Tabla, BorderLayout.CENTER);
+        pnl_Contenido.add(jsp_Tabla, BorderLayout.CENTER);
 
     }
 
