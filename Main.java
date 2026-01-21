@@ -1,5 +1,6 @@
 import javax.swing.SwingUtilities;
-import Principal.VentanaPrincipal;
+
+import principal.VentanaPrincipal;
 
 public class Main {
     public static void main(String[] args) {

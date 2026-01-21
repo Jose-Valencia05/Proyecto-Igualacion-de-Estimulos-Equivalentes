@@ -1,49 +1,26 @@
-package Pantallas;
+package pantallas;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.util.stream.Gatherer.Integrator;
 
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
-import Componentes.Buttons;
-import Componentes.ConstantesPantallas;
-import Componentes.Labels;
-import Componentes.PanelPrincipal;
-import Componentes.Texts;
+import componentes.Buttons;
+import componentes.ConstantesPantallas;
+import componentes.ConstantesPantallas.LargoComponente;
+import modelos.Paciente;
+import componentes.Labels;
+import componentes.PanelPrincipal;
+import componentes.Texts;
 
 public class PantallaRegistro extends PanelPrincipal {
 
-    private enum LargoComponente {
-        PEQUEÑO(80), // Ancho en píxeles
-        MEDIANO(200),
-        GRANDE(400),
-        FIJO(0); // Para etiquetas
-
-        private final int ancho;
-
-        LargoComponente(int ancho) {
-            this.ancho = ancho;
-        }
-
-        public int getAncho() {
-            return ancho;
-        }
-    }
-
-    public PantallaRegistro() {
-        this.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent evt) {
-                pnl_Contenido.revalidate();
-                pnl_Contenido.repaint();
-            }
-        });
-
-    }
+    private Texts txtNombres;
+    private Texts txtApellidos;
+    private Texts txtEdad;
+    private JComboBox<String> cbxCarrera;
+    private Texts txtSemestre;
 
     @Override
     protected void inicializarPanelTitulo() {
@@ -66,39 +43,55 @@ public class PantallaRegistro extends PanelPrincipal {
 
         // Escalable: Poder añadir mas componentes o retirarlos
 
-        agregarComponente("Nombre:", new Texts("Juan Antonio", "Nombre del Paciente"), LargoComponente.GRANDE);
-        agregarComponente("Apellidos:", new Texts("Perez Sanchez", "Apellidos del Paciente"), LargoComponente.GRANDE);
-        agregarComponente("Edad:", new Texts(null, "Edad del Paciente"), LargoComponente.PEQUEÑO);
-        agregarComponente("Carrera:", new JComboBox<String>(new String[] {
+        txtNombres = new Texts("Juan Antonio", "Nombre del Paciente");
+        txtApellidos = new Texts("Perez Sanchez", "Apellidos del Paciente");
+        txtEdad = new Texts(null, "Edad del Paciente");
+        cbxCarrera = new JComboBox<String>(new String[] {
                 "PSICOLOGIA",
                 "OPTOMETRIA",
                 "BIOLOGIA",
                 "MEDICO CIRUJANO",
                 "CIRUJANO DENTISTA",
                 "ENFERMERIA"
-        }), LargoComponente.MEDIANO);
+        });
+        txtSemestre = new Texts(null, "Semestre del Paciente");
 
-        agregarComponente("Semestre:", new Texts(null, "Semestre del Paciente"), LargoComponente.PEQUEÑO);
-
-    }
-
-    private void agregarComponente(String strLabel, JComponent jcp_Componente, LargoComponente dblLargo) {
-
-        JPanel pnl_Grupo = new JPanel(new BorderLayout(5, 2));
-
-        pnl_Grupo.add(new Labels(strLabel), BorderLayout.NORTH);
-
-        jcp_Componente.setPreferredSize(new Dimension(dblLargo.getAncho(), 35));
-        pnl_Grupo.add(jcp_Componente, BorderLayout.CENTER);
-
-        pnl_Contenido.add(pnl_Grupo);
-        // new Texts(strTextText, (strTextTool == null ? "" : strTextTool)), gbc);
+        agregarComponente("Nombre:", txtNombres, LargoComponente.GRANDE);
+        agregarComponente("Apellidos:", txtApellidos, LargoComponente.GRANDE);
+        agregarComponente("Edad:", txtEdad, LargoComponente.PEQUEÑO);
+        agregarComponente("Carrera:", cbxCarrera, LargoComponente.MEDIANO);
+        agregarComponente("Semestre:", txtSemestre, LargoComponente.PEQUEÑO);
 
     }
 
     @Override
     protected void inicializarPanelBotones() {
         agregarBotonRegresar(ConstantesPantallas.PANTALLA_MENU);
-        pnl_Botones.add(new Buttons("Guardar y  continuar", ConstantesPantallas.PANTALLA_REGISTRO));
+        Buttons btnGuardar = new Buttons("Guardar y  continuar", ConstantesPantallas.PANTALLA_MENU);
+        btnGuardar.addActionListener(e -> {
+            Paciente nuevoPaciente = capturarPaciente();
+            if (nuevoPaciente != null) {
+                System.out.println("\tPaciente capturado: \n" + nuevoPaciente.toString());
+            }
+        });
+        pnl_Botones.add(btnGuardar);
+
+    }
+
+    public Paciente capturarPaciente() {
+        try {
+            String strNombres = txtNombres.getText().trim();
+            String strApellidos = txtApellidos.getText().trim();
+            String strCarrera = txtSemestre.getText().trim();
+
+            int intEdad = txtEdad.getText().isEmpty() ? 0 : Integer.parseInt(txtEdad.getText());
+            int intSemestre = txtSemestre.getText().isEmpty() ? 0 : Integer.parseInt(txtSemestre.getText());
+
+            return new Paciente(strNombres, strApellidos, intEdad, strCarrera, intSemestre);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Porfavor, ingrese solo números en Edad y Semestre");
+            return null;
+        }
     }
 }

@@ -1,9 +1,9 @@
-package Pantallas;
+package pantallas;
 
-import Componentes.Buttons;
-import Componentes.ConstantesPantallas;
-import Componentes.Labels;
-import Componentes.PanelPrincipal;
+import componentes.Buttons;
+import componentes.ConstantesPantallas;
+import componentes.Labels;
+import componentes.PanelPrincipal;
 
 public class PantallaMenu extends PanelPrincipal {
 

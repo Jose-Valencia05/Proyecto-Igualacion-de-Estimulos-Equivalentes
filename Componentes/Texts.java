@@ -1,4 +1,4 @@
-package Componentes;
+package componentes;
 
 import java.awt.Dimension;
 import java.awt.event.FocusAdapter;

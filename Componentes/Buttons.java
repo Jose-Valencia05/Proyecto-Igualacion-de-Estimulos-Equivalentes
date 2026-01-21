@@ -1,10 +1,10 @@
-package Componentes;
+package componentes;
 
 import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
-import Principal.VentanaPrincipal;
+import principal.VentanaPrincipal;
 
 public class Buttons extends JButton {
 

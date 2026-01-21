@@ -1,11 +1,15 @@
-package Principal;
+package principal;
 
-import Componentes.*;
-import Pantallas.*;
+import pantallas.*;
+import componentes.*;
+
+import java.awt.BorderLayout;
 
 import javax.swing.*;
 
 public class VentanaPrincipal extends JFrame {
+
+    private JPanel pnl_Actual;
 
     public VentanaPrincipal() {
 
@@ -14,31 +18,38 @@ public class VentanaPrincipal extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        this.setLayout(new BorderLayout());
+
         this.cambiarPantalla(ConstantesPantallas.PANTALLA_MENU);
 
         this.setVisible(true);
     }
 
     public void cambiarPantalla(int intTipoPantalla) {
-        this.getContentPane().removeAll(); // Limpiar ventana actual
+
+        if (pnl_Actual != null) {
+            this.remove(pnl_Actual);
+        }
 
         switch (intTipoPantalla) {
             case ConstantesPantallas.PANTALLA_MENU:
-                add(new PantallaMenu());
+                pnl_Actual = new PantallaMenu();
                 break;
             case ConstantesPantallas.PANTALLA_REGISTRO:
-                add(new PantallaRegistro());
+                pnl_Actual = new PantallaRegistro();
                 break;
             case ConstantesPantallas.PANTALLA_REPORTE:
-                add(new PantallaReporte());
+                pnl_Actual = new PantallaReporte();
                 break;
             case ConstantesPantallas.PANTALLA_TESTMENU:
-                add(new PantallaRegistro());
+                pnl_Actual = new PantallaRegistro();
                 break;
             case ConstantesPantallas.PANTALLA_TEST:
-                add(new PantallaRegistro());
+                pnl_Actual = new PantallaRegistro();
                 break;
         }
+
+        this.add(pnl_Actual, BorderLayout.CENTER);
 
         this.revalidate();
         this.repaint();

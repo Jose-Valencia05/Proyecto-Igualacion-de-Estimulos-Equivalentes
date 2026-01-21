@@ -1,4 +1,4 @@
-package Pantallas;
+package pantallas;
 
 import java.awt.BorderLayout;
 
@@ -7,9 +7,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import Componentes.ConstantesPantallas;
-import Componentes.Labels;
-import Componentes.PanelPrincipal;
+import componentes.ConstantesPantallas;
+import componentes.Labels;
+import componentes.PanelPrincipal;
 
 public class PantallaReporte extends PanelPrincipal {
 
@@ -54,12 +54,12 @@ public class PantallaReporte extends PanelPrincipal {
 
         jtbTabla.setTableHeader(jth);
 
-        JScrollPane jsp_Tabla = new JScrollPane(jtbTabla);
-        jsp_Tabla.setBorder(null);
+        jsp_Contenido = new JScrollPane(jtbTabla);
+        jsp_Contenido.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsp_Contenido.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jsp_Contenido.setBorder(null);
 
-        pnl_Contenido.setLayout(new BorderLayout());
-        pnl_Contenido.add(jsp_Tabla, BorderLayout.CENTER);
-
+        this.add(jsp_Contenido, BorderLayout.CENTER);
     }
 
     @Override
