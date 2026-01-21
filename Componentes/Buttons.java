@@ -11,7 +11,7 @@ public class Buttons extends JButton {
     public Buttons(String strTitulo, int intPantalla) {
         super(strTitulo);
         this.setForeground(Color.WHITE);
-        this.setFont(new Font("Arial", Font.PLAIN, 30));
+        this.setFont(Fuentes.FUENTE_TEXTO);
         this.setBorder(null);
         this.setOpaque(true);
         this.setBackground(Color.BLUE);
