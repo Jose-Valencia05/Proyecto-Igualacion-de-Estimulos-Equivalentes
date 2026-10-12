@@ -1,2 +1,5 @@
 # Ignorar la carpeta de configuración de Visual Studio Code
 .vscode/
+
+# Ignorar el archivo de  Notas de Desarrollo
+NotasDesarrollo.txt
